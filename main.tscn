@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bqm3lrrovm731"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 145.0
+offset_top = 82.0
+offset_right = 606.0
+offset_bottom = 207.0
+bbcode_enabled = true
+text = "hi! add [b]anything[/b] you want here
+it doesn't have to be anything complex - you could even just add assets you want to see others use
+remember to commit + push when you're done!"
