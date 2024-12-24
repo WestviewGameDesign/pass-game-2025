@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8xm4cjekl3qj"
-path="res://.godot/imported/large asteriod.png-079590f2106d54eb440aaf3172acf2f1.ctex"
+uid="uid://cbg34s6odsawe"
+path="res://.godot/imported/large asteriod 2.png-02e8f976a9d27dc05f65d7a996f91ba4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/large asteriod.png"
-dest_files=["res://.godot/imported/large asteriod.png-079590f2106d54eb440aaf3172acf2f1.ctex"]
+source_file="res://Assets/Asteroids/large asteriod 2.png"
+dest_files=["res://.godot/imported/large asteriod 2.png-02e8f976a9d27dc05f65d7a996f91ba4.ctex"]
 
 [params]
 

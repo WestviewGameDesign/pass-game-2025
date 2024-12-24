@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://caphj8g03kr83"]
+[gd_scene load_steps=10 format=3 uid="uid://caphj8g03kr83"]
 
 [ext_resource type="Texture2D" uid="uid://dr5e52wptk4hr" path="res://Assets/Background/space3_4-frames.png" id="1_e1pg1"]
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_horug"]
 [ext_resource type="PackedScene" uid="uid://dohytm04c8oyt" path="res://Scenes/monkey.tscn" id="1_jii5e"]
 [ext_resource type="PackedScene" uid="uid://bh1lnogs6m0x4" path="res://Scenes/asteroid.tscn" id="3_lyxvq"]
 
@@ -41,6 +42,7 @@ animations = [{
 }]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_horug")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var sprite = $AnimatedSprite2D
 
-var thrust_force = 500
+var thrust_force = 1000
 var friction = 0.99
 
 func _physics_process(delta):
@@ -50,7 +50,8 @@ func play_movement_animation(direction: Vector2):
 		sprite.play("down_left")
 		
 
-
-func _on_body_entered(body):
-	if body.is_in_group("asteroid"):
-		pass
+func _process(float):
+	for body in $Area2D.get_overlapping_bodies():
+		if body.is_in_group("asteroid"):
+			print("collided")
+			body.explode()
