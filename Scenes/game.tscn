@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://caphj8g03kr83"]
+
+[ext_resource type="Texture2D" uid="uid://dr5e52wptk4hr" path="res://Assets/Background/space3_4-frames.png" id="1_e1pg1"]
+[ext_resource type="PackedScene" uid="uid://dohytm04c8oyt" path="res://Scenes/monkey.tscn" id="1_jii5e"]
+[ext_resource type="PackedScene" uid="uid://bh1lnogs6m0x4" path="res://Scenes/asteroid.tscn" id="3_lyxvq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1i1x"]
+atlas = ExtResource("1_e1pg1")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7t8h"]
+atlas = ExtResource("1_e1pg1")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cylex"]
+atlas = ExtResource("1_e1pg1")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrmsa"]
+atlas = ExtResource("1_e1pg1")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0vgh6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1i1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7t8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cylex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrmsa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(40.275, 40.275)
+sprite_frames = SubResource("SpriteFrames_0vgh6")
+autoplay = "default"
+
+[node name="Asteroids" type="Node" parent="."]
+
+[node name="RigidBody2D" parent="Asteroids" instance=ExtResource("3_lyxvq")]
+position = Vector2(-742, -390)
+
+[node name="RigidBody2D2" parent="Asteroids" instance=ExtResource("3_lyxvq")]
+position = Vector2(123, -581)
+
+[node name="RigidBody2D3" parent="Asteroids" instance=ExtResource("3_lyxvq")]
+position = Vector2(277, -714)
+
+[node name="RigidBody2D4" parent="Asteroids" instance=ExtResource("3_lyxvq")]
+position = Vector2(352, -513)
+
+[node name="RigidBody2D5" parent="Asteroids" instance=ExtResource("3_lyxvq")]
+position = Vector2(641, 168)
+
+[node name="RigidBody2D6" parent="Asteroids" instance=ExtResource("3_lyxvq")]
+position = Vector2(-689, -550)
+
+[node name="RigidBody2D7" parent="Asteroids" instance=ExtResource("3_lyxvq")]
+position = Vector2(-872, -704)
+
+[node name="RigidBody2D8" parent="Asteroids" instance=ExtResource("3_lyxvq")]
+position = Vector2(-551, -790)
+
+[node name="RigidBody2D9" parent="Asteroids" instance=ExtResource("3_lyxvq")]
+position = Vector2(-842, 477)
+
+[node name="RigidBody2D10" parent="Asteroids" instance=ExtResource("3_lyxvq")]
+position = Vector2(809, -113)
+
+[node name="RigidBody2D11" parent="Asteroids" instance=ExtResource("3_lyxvq")]
+position = Vector2(452, 896)
+
+[node name="RigidBody2D12" parent="Asteroids" instance=ExtResource("3_lyxvq")]
+position = Vector2(593, 579)
+
+[node name="RigidBody2D13" parent="Asteroids" instance=ExtResource("3_lyxvq")]
+position = Vector2(-518, 639)
+
+[node name="RigidBody2D14" parent="Asteroids" instance=ExtResource("3_lyxvq")]
+position = Vector2(168, 666)
+
+[node name="RigidBody2D15" parent="Asteroids" instance=ExtResource("3_lyxvq")]
+position = Vector2(-294, 387)
+
+[node name="RigidBody2D16" parent="Asteroids" instance=ExtResource("3_lyxvq")]
+position = Vector2(-815, 196)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_jii5e")]
