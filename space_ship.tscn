@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://crxkcmeecdahs"]
+
+[ext_resource type="Script" path="res://space_ship.gd" id="1_cx7ff"]
+[ext_resource type="Texture2D" uid="uid://cal2px2fg8mj" path="res://pixel_art_is_hard.png" id="1_tpn0k"]
+[ext_resource type="AudioStream" uid="uid://b628fhfmjyj7g" path="res://sounds/impactMetal_000.ogg" id="3_r6p7b"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kq1sh"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_optev"]
+radius = 349.961
+
+[sub_resource type="LabelSettings" id="LabelSettings_tnc3t"]
+font_size = 146
+
+[node name="SpaceShip" type="RigidBody2D"]
+collision_layer = 11
+mass = 1e+08
+physics_material_override = SubResource("PhysicsMaterial_kq1sh")
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 48
+script = ExtResource("1_cx7ff")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(9.53674e-07, -1)
+scale = Vector2(10.75, 11)
+texture = ExtResource("1_tpn0k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_optev")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -546.0
+offset_top = -555.0
+offset_right = 705.0
+offset_bottom = -263.0
+scale = Vector2(0.981866, 1)
+text = "Health: %d/%d"
+label_settings = SubResource("LabelSettings_tnc3t")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_r6p7b")
+volume_db = -13.117
+max_polyphony = 32
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

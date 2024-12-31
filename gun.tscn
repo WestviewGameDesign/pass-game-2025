@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://u2tuct3qiv4v"]
+
+[ext_resource type="Texture2D" uid="uid://pkuy5kibtr4e" path="res://banana.png" id="1_iscgn"]
+[ext_resource type="AudioStream" uid="uid://dyeqo3catxwrb" path="res://sounds/laserSmall_002.ogg" id="2_v5dwo"]
+
+[node name="Gun" type="Node2D"]
+
+[node name="Banana" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(127, 36)
+rotation = -1.57079
+scale = Vector2(8.27807, 7.48688)
+texture = ExtResource("1_iscgn")
+
+[node name="ShootPoint" type="Marker2D" parent="."]
+position = Vector2(181, 10)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_v5dwo")

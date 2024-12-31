@@ -2,8 +2,10 @@ extends CharacterBody2D
 
 @onready var sprite = $AnimatedSprite2D
 
-var thrust_force = 1000
-var friction = 0.99
+@export var thrust_force = 1000
+@export var friction = 0.99
+
+@export var mass := 10
 
 func _physics_process(delta):
 	var direction = Vector2.ZERO
@@ -55,3 +57,7 @@ func _process(float):
 		if body.is_in_group("asteroid"):
 			print("collided")
 			body.explode()
+
+
+func apply_central_impulse(impulse: Vector2):
+	velocity += impulse / mass

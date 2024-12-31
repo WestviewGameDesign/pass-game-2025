@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://caphj8g03kr83"]
+[gd_scene load_steps=21 format=3 uid="uid://caphj8g03kr83"]
 
 [ext_resource type="Texture2D" uid="uid://dr5e52wptk4hr" path="res://Assets/Background/space3_4-frames.png" id="1_e1pg1"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_horug"]
 [ext_resource type="PackedScene" uid="uid://dohytm04c8oyt" path="res://Scenes/monkey.tscn" id="1_jii5e"]
-[ext_resource type="PackedScene" uid="uid://bh1lnogs6m0x4" path="res://Scenes/asteroid.tscn" id="3_lyxvq"]
+[ext_resource type="Script" path="res://Scenes/spawn_asteroids.gd" id="4_7tls4"]
+[ext_resource type="PackedScene" uid="uid://crxkcmeecdahs" path="res://space_ship.tscn" id="5_xejvh"]
+[ext_resource type="Script" path="res://Scenes/difficulty_curve.gd" id="6_42034"]
+[ext_resource type="AudioStream" uid="uid://btgkswhnb18f5" path="res://sounds/explosionCrunch_000.ogg" id="7_7et5j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s1i1x"]
 atlas = ExtResource("1_e1pg1")
@@ -41,6 +44,85 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="Curve2D" id="Curve2D_iig77"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2033, -1164, 0, 0, 0, 0, 1986, -1170, 0, 0, 0, 0, 1999, 1179, 0, 0, 0, 0, -2059, 1192, 0, 0, 0, 0, -2040, -1151)
+}
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ua83m"]
+size = Vector2(4826, 574.013)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rel6k"]
+size = Vector2(494, 2804.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43bkl"]
+size = Vector2(4433, 189)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_otxjf"]
+size = Vector2(387, 2524.5)
+
+[sub_resource type="Animation" id="Animation_oyhxu"]
+resource_name = "difficulty_curve"
+length = 120.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/AsteroidSpawner/SpawnTimer:wait_time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 60.8333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path2D/AsteroidSpawner:max_asteroid_impulse")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 60.6667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [500.0, 500.0]
+}
+
+[sub_resource type="Animation" id="Animation_lycgg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/AsteroidSpawner/SpawnTimer:wait_time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path2D/AsteroidSpawner:max_asteroid_impulse")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.366667),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [500.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n3235"]
+_data = {
+"RESET": SubResource("Animation_lycgg"),
+"difficulty_curve": SubResource("Animation_oyhxu")
+}
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_horug")
 
@@ -50,54 +132,63 @@ scale = Vector2(40.275, 40.275)
 sprite_frames = SubResource("SpriteFrames_0vgh6")
 autoplay = "default"
 
-[node name="Asteroids" type="Node" parent="."]
-
-[node name="RigidBody2D" parent="Asteroids" instance=ExtResource("3_lyxvq")]
-position = Vector2(-742, -390)
-
-[node name="RigidBody2D2" parent="Asteroids" instance=ExtResource("3_lyxvq")]
-position = Vector2(123, -581)
-
-[node name="RigidBody2D3" parent="Asteroids" instance=ExtResource("3_lyxvq")]
-position = Vector2(277, -714)
-
-[node name="RigidBody2D4" parent="Asteroids" instance=ExtResource("3_lyxvq")]
-position = Vector2(352, -513)
-
-[node name="RigidBody2D5" parent="Asteroids" instance=ExtResource("3_lyxvq")]
-position = Vector2(641, 168)
-
-[node name="RigidBody2D6" parent="Asteroids" instance=ExtResource("3_lyxvq")]
-position = Vector2(-689, -550)
-
-[node name="RigidBody2D7" parent="Asteroids" instance=ExtResource("3_lyxvq")]
-position = Vector2(-872, -704)
-
-[node name="RigidBody2D8" parent="Asteroids" instance=ExtResource("3_lyxvq")]
-position = Vector2(-551, -790)
-
-[node name="RigidBody2D9" parent="Asteroids" instance=ExtResource("3_lyxvq")]
-position = Vector2(-842, 477)
-
-[node name="RigidBody2D10" parent="Asteroids" instance=ExtResource("3_lyxvq")]
-position = Vector2(809, -113)
-
-[node name="RigidBody2D11" parent="Asteroids" instance=ExtResource("3_lyxvq")]
-position = Vector2(452, 896)
-
-[node name="RigidBody2D12" parent="Asteroids" instance=ExtResource("3_lyxvq")]
-position = Vector2(593, 579)
-
-[node name="RigidBody2D13" parent="Asteroids" instance=ExtResource("3_lyxvq")]
-position = Vector2(-518, 639)
-
-[node name="RigidBody2D14" parent="Asteroids" instance=ExtResource("3_lyxvq")]
-position = Vector2(168, 666)
-
-[node name="RigidBody2D15" parent="Asteroids" instance=ExtResource("3_lyxvq")]
-position = Vector2(-294, 387)
-
-[node name="RigidBody2D16" parent="Asteroids" instance=ExtResource("3_lyxvq")]
-position = Vector2(-815, 196)
-
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_jii5e")]
+position = Vector2(-542, -521)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(1.29195, 1.85173)
+zoom = Vector2(0.285, 0.285)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_iig77")
+
+[node name="AsteroidSpawner" type="PathFollow2D" parent="Path2D" node_paths=PackedStringArray("game", "asteroid_target")]
+position = Vector2(-2033, -1164)
+rotation = -0.00149291
+script = ExtResource("4_7tls4")
+game = NodePath("../..")
+asteroid_target = NodePath("../../SpaceShip")
+min_asteroid_impulse = 150.0
+max_asteroid_impulse = 500.0
+min_asteroid_torque = -7.0
+max_asteroid_torque = 7.0
+asteroid_offset_range = 12.0
+
+[node name="SpawnTimer" type="Timer" parent="Path2D/AsteroidSpawner"]
+wait_time = 2.0
+autostart = true
+
+[node name="SpaceShip" parent="." instance=ExtResource("5_xejvh")]
+
+[node name="WorldBounds" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(-113.001, -1425)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_ua83m")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(2277, -132)
+shape = SubResource("RectangleShape2D_rel6k")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(-18, 1254)
+shape = SubResource("RectangleShape2D_43bkl")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(-2245, -67)
+shape = SubResource("RectangleShape2D_otxjf")
+
+[node name="DifficultyCurve" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_n3235")
+}
+script = ExtResource("6_42034")
+
+[node name="AsteroidSounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_7et5j")
+volume_db = -8.432
+max_polyphony = 32
+
+[connection signal="timeout" from="Path2D/AsteroidSpawner/SpawnTimer" to="Path2D/AsteroidSpawner" method="_on_spawn_timer_timeout"]

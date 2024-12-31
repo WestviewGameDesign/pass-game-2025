@@ -5,17 +5,22 @@
 [ext_resource type="Shape2D" uid="uid://b5uknvt1yslm1" path="res://Resources/asteroid_cshape_large.tres" id="3_uysnv"]
 
 [node name="RigidBody2D" type="RigidBody2D" groups=["asteroid"]]
+collision_layer = 9
 gravity_scale = 0.0
-linear_damp = 0.1
-angular_damp = 0.1
+inertia = 1.0
+contact_monitor = true
+max_contacts_reported = 12
+linear_damp = 0.001
 script = ExtResource("1_s8a30")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+position = Vector2(6, 7)
 scale = Vector2(10, 10)
 texture = ExtResource("2_ycvua")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, -5)
 rotation = 1.5708
 shape = ExtResource("3_uysnv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

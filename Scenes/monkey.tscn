@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://dohytm04c8oyt"]
+[gd_scene load_steps=63 format=3 uid="uid://dohytm04c8oyt"]
 
 [ext_resource type="Script" path="res://Scripts/monkey.gd" id="1_cmu77"]
 [ext_resource type="Texture2D" uid="uid://1o7c7llm6ug3" path="res://Assets/Monkey/down-ezgif.com-gif-to-sprite-converter.png" id="2_p8cyj"]
@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://freruexvb4xk" path="res://Assets/Monkey/up-ezgif.com-gif-to-sprite-converter.png" id="5_5igll"]
 [ext_resource type="Texture2D" uid="uid://bk7tqt3grocl7" path="res://Assets/Monkey/upleft-ezgif.com-gif-to-sprite-converter.png" id="8_t8cw1"]
 [ext_resource type="Texture2D" uid="uid://ctls4g5fy5ksl" path="res://Assets/Monkey/upright-ezgif.com-gif-to-sprite-converter.png" id="9_p71dq"]
+[ext_resource type="PackedScene" uid="uid://u2tuct3qiv4v" path="res://gun.tscn" id="10_6nqmr"]
+[ext_resource type="Script" path="res://gun.gd" id="11_205i2"]
+[ext_resource type="PackedScene" uid="uid://cijuqsvhrxlri" path="res://bullet.tscn" id="12_1wq6h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u2aiq"]
 atlas = ExtResource("2_p8cyj")
@@ -403,6 +406,9 @@ radius = 60.0
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Monkey"]]
 collision_mask = 2
 script = ExtResource("1_cmu77")
+thrust_force = 3250
+friction = 0.96
+mass = 8
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vi5r8")
@@ -411,11 +417,14 @@ animation = &"down"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r4sb7")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_r4sb7")
+
+[node name="Gun" parent="." instance=ExtResource("10_6nqmr")]
+script = ExtResource("11_205i2")
+bullet_scene = ExtResource("12_1wq6h")
+shoot_impulse = 2000.0

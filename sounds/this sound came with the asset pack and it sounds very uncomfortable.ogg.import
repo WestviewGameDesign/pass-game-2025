@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cl01bllsi62jd"
+path="res://.godot/imported/this sound came with the asset pack and it sounds very uncomfortable.ogg-817f212f9de327f70249c1c12c7967ca.oggvorbisstr"
+
+[deps]
+
+source_file="res://sounds/this sound came with the asset pack and it sounds very uncomfortable.ogg"
+dest_files=["res://.godot/imported/this sound came with the asset pack and it sounds very uncomfortable.ogg-817f212f9de327f70249c1c12c7967ca.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
