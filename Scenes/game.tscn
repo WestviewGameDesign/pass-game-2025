@@ -1,50 +1,15 @@
-[gd_scene load_steps=24 format=3 uid="uid://caphj8g03kr83"]
+[gd_scene load_steps=23 format=3 uid="uid://caphj8g03kr83"]
 
-[ext_resource type="Texture2D" uid="uid://dr5e52wptk4hr" path="res://Assets/Background/space3_4-frames.png" id="1_e1pg1"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_horug"]
 [ext_resource type="PackedScene" uid="uid://dohytm04c8oyt" path="res://Scenes/monkey.tscn" id="1_jii5e"]
+[ext_resource type="PackedScene" uid="uid://j8llt4inocx8" path="res://Scenes/background_tile.tscn" id="3_hkme4"]
 [ext_resource type="Script" path="res://Scenes/spawn_asteroids.gd" id="4_7tls4"]
 [ext_resource type="PackedScene" uid="uid://crxkcmeecdahs" path="res://space_ship.tscn" id="5_xejvh"]
 [ext_resource type="Script" path="res://Scenes/difficulty_curve.gd" id="6_42034"]
 [ext_resource type="AudioStream" uid="uid://btgkswhnb18f5" path="res://sounds/explosionCrunch_000.ogg" id="7_7et5j"]
 [ext_resource type="PackedScene" uid="uid://dctiprxpqrqfj" path="res://Scenes/HUD.tscn" id="8_2bh8e"]
+[ext_resource type="Texture2D" uid="uid://0lwwsylpcoqo" path="res://Assets/fireball.png" id="8_7xfgk"]
 [ext_resource type="FontFile" uid="uid://bmelqiqunw0vg" path="res://Assets/SpaceMono-Bold.ttf" id="9_gf25o"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s1i1x"]
-atlas = ExtResource("1_e1pg1")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p7t8h"]
-atlas = ExtResource("1_e1pg1")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cylex"]
-atlas = ExtResource("1_e1pg1")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rrmsa"]
-atlas = ExtResource("1_e1pg1")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_0vgh6"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s1i1x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p7t8h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cylex")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rrmsa")
-}],
-"loop": true,
-"name": &"default",
-"speed": 4.0
-}]
 
 [sub_resource type="Curve2D" id="Curve2D_iig77"]
 _data = {
@@ -126,6 +91,137 @@ _data = {
 "difficulty_curve": SubResource("Animation_oyhxu")
 }
 
+[sub_resource type="Animation" id="Animation_7608n"]
+resource_name = "game_over"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosion1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.2, 1.4, 1.6, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"restart"
+}, {
+"args": [],
+"method": &"restart"
+}, {
+"args": [],
+"method": &"restart"
+}, {
+"args": [],
+"method": &"restart"
+}, {
+"args": [],
+"method": &"restart"
+}, {
+"args": [],
+"method": &"restart"
+}, {
+"args": [],
+"method": &"restart"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Explosion2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25, 1.13333, 1.5, 1.73333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"restart"
+}, {
+"args": [],
+"method": &"restart"
+}, {
+"args": [],
+"method": &"restart"
+}, {
+"args": [],
+"method": &"restart"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Explosion3")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1.2, 1.56667, 1.93333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"restart"
+}, {
+"args": [],
+"method": &"restart"
+}, {
+"args": [],
+"method": &"restart"
+}, {
+"args": [],
+"method": &"restart"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Explosion4")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.75, 1.36667, 1.7, 1.93333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"restart"
+}, {
+"args": [],
+"method": &"restart"
+}, {
+"args": [],
+"method": &"restart"
+}, {
+"args": [],
+"method": &"restart"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"get_out"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ck41k"]
+_data = {
+"game_over": SubResource("Animation_7608n")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4w5di"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 1500.0
+initial_velocity_max = 2000.0
+gravity = Vector3(0, 0, 0)
+
 [sub_resource type="LabelSettings" id="LabelSettings_ki0nq"]
 font_size = 36
 
@@ -134,28 +230,13 @@ font_size = 36
 [node name="2DWorld" type="Node2D" parent="."]
 script = ExtResource("1_horug")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="2DWorld"]
-texture_filter = 1
-scale = Vector2(40, 40)
-sprite_frames = SubResource("SpriteFrames_0vgh6")
-autoplay = "default"
+[node name="BackgroundTile" parent="2DWorld" instance=ExtResource("3_hkme4")]
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="2DWorld"]
-texture_filter = 1
-position = Vector2(-2560, 0)
-scale = Vector2(40, 40)
-sprite_frames = SubResource("SpriteFrames_0vgh6")
-autoplay = "default"
-
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="2DWorld"]
-texture_filter = 1
-position = Vector2(2560, 0)
-scale = Vector2(40, 40)
-sprite_frames = SubResource("SpriteFrames_0vgh6")
-autoplay = "default"
+[node name="BackgroundTile2" parent="2DWorld" instance=ExtResource("3_hkme4")]
+position = Vector2(0, -2560)
 
 [node name="CharacterBody2D" parent="2DWorld" instance=ExtResource("1_jii5e")]
-position = Vector2(-1196, 19)
+position = Vector2(-1201, 14)
 
 [node name="Camera2D" type="Camera2D" parent="2DWorld"]
 scale = Vector2(1.29195, 1.85173)
@@ -216,6 +297,48 @@ script = ExtResource("6_42034")
 stream = ExtResource("7_7et5j")
 volume_db = -12.0
 max_polyphony = 32
+
+[node name="GameOverSeq" type="AnimationPlayer" parent="2DWorld"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_ck41k")
+}
+
+[node name="Explosion1" type="GPUParticles2D" parent="2DWorld"]
+emitting = false
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_4w5di")
+texture = ExtResource("8_7xfgk")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+
+[node name="Explosion2" type="GPUParticles2D" parent="2DWorld"]
+emitting = false
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_4w5di")
+texture = ExtResource("8_7xfgk")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+
+[node name="Explosion3" type="GPUParticles2D" parent="2DWorld"]
+emitting = false
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_4w5di")
+texture = ExtResource("8_7xfgk")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+
+[node name="Explosion4" type="GPUParticles2D" parent="2DWorld"]
+emitting = false
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_4w5di")
+texture = ExtResource("8_7xfgk")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

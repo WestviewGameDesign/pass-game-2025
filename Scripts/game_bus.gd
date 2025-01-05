@@ -9,4 +9,4 @@ signal game_over()
 signal refresh_hp()
 
 # data
-var score_time: float = 0.0
+var score_time: String = ""

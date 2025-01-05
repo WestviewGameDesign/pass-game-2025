@@ -13,6 +13,7 @@ extends VBoxContainer
 func _ready():
 	GameBus.hp_changed.connect(update_label)
 	GameBus.refresh_hp.emit()
+	GameBus.game_over.connect(func(): visible = false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

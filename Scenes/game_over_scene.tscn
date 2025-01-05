@@ -1,3 +1,76 @@
-[gd_scene format=3 uid="uid://c4wx5nvvk8ik5"]
+[gd_scene load_steps=8 format=3 uid="uid://c4wx5nvvk8ik5"]
+
+[ext_resource type="PackedScene" uid="uid://dohytm04c8oyt" path="res://Scenes/monkey.tscn" id="1_1m3wk"]
+[ext_resource type="Script" path="res://Scenes/game_over_scene.gd" id="1_mqosy"]
+[ext_resource type="PackedScene" uid="uid://j8llt4inocx8" path="res://Scenes/background_tile.tscn" id="2_pwl7g"]
+[ext_resource type="FontFile" uid="uid://bmelqiqunw0vg" path="res://Assets/SpaceMono-Bold.ttf" id="3_q5qvs"]
+[ext_resource type="FontFile" uid="uid://ba41riwukjg66" path="res://Assets/SpaceMono-Regular.ttf" id="4_hd4rm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t45d4"]
+font = ExtResource("3_q5qvs")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_d4ta2"]
+font = ExtResource("4_hd4rm")
+font_size = 32
 
 [node name="GameOverScene" type="Node"]
+script = ExtResource("1_mqosy")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_1m3wk")]
+z_index = 2
+position = Vector2(239, 297)
+scale = Vector2(0.5, 0.5)
+
+[node name="BackgroundTile" parent="." instance=ExtResource("2_pwl7g")]
+position = Vector2(600, 320)
+
+[node name="BackgroundTile2" parent="." instance=ExtResource("2_pwl7g")]
+position = Vector2(600, -2240)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+z_index = 5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="ColorRect" parent="CenterContainer/MarginContainer2"]
+layout_mode = 2
+color = Color(0.0331302, 0.0310483, 0.00884615, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer2/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_t45d4")
+
+[node name="Score" type="Label" parent="CenterContainer/MarginContainer2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "You survived for %s against
+the barrage of asteroids."
+label_settings = SubResource("LabelSettings_d4ta2")
+
+[node name="Retry" type="Button" parent="CenterContainer/MarginContainer2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_q5qvs")
+theme_override_font_sizes/font_size = 36
+text = "Try Again"

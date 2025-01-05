@@ -4,15 +4,23 @@ extends Node2D
 #@onready var asteroids = $Asteroids
 
 var start_time: float
+var end_time: float = 0.0
 var asteroid_scene = preload("res://Scenes/asteroid.tscn")
 @onready var timer = %Timer
+@onready var game_over_seq = %GameOverSeq
 
 func _ready():
 	start_time = Time.get_ticks_usec() / 1e6
+	GameBus.game_over.connect(_game_over)
 
 func _game_over():
-	var end_time = Time.get_ticks_usec() / 1e6
+	end_time = Time.get_ticks_usec() / 1e6
 	var survived = end_time - start_time
+	GameBus.score_time = dur_to_str(survived)
+	game_over_seq.play("game_over")
+
+func get_out():
+	get_tree().change_scene_to_file("res://Scenes/game_over_scene.tscn")
 
 func dur_to_str(dur: float) -> String:
 	var seconds := dur
@@ -28,6 +36,8 @@ func dur_to_str(dur: float) -> String:
 
 func _process(delta: float) -> void:
 	var duration := Time.get_ticks_usec() / 1e6 - start_time
+	if end_time != 0:
+		duration = end_time - start_time
 	var durastr := dur_to_str(duration)
 	timer.text = "TIME: %s" % durastr
 

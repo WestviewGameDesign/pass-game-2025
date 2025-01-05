@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://j8llt4inocx8"]
+
+[ext_resource type="Script" path="res://Scripts/background_tile.gd" id="1_d6qx5"]
+[ext_resource type="SpriteFrames" uid="uid://vs586di21tn1" path="res://Assets/Background/background_tile.tres" id="2_tgt1n"]
+
+[node name="BackgroundTile" type="Node2D"]
+script = ExtResource("1_d6qx5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(40, 40)
+sprite_frames = ExtResource("2_tgt1n")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-2560, 0)
+scale = Vector2(40, 40)
+sprite_frames = ExtResource("2_tgt1n")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2560, 0)
+scale = Vector2(40, 40)
+sprite_frames = ExtResource("2_tgt1n")
+autoplay = "default"
+
+[node name="Visibility" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(40, 40)
+rect = Rect2(-96, -32, 192, 64)
+
+[connection signal="screen_exited" from="Visibility" to="." method="_on_visibility_screen_exited"]
