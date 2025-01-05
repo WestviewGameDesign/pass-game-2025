@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://crxkcmeecdahs"]
+[gd_scene load_steps=6 format=3 uid="uid://crxkcmeecdahs"]
 
 [ext_resource type="Script" path="res://space_ship.gd" id="1_cx7ff"]
 [ext_resource type="Texture2D" uid="uid://cal2px2fg8mj" path="res://pixel_art_is_hard.png" id="1_tpn0k"]
@@ -9,9 +9,6 @@ bounce = 0.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_optev"]
 radius = 349.961
-
-[sub_resource type="LabelSettings" id="LabelSettings_tnc3t"]
-font_size = 146
 
 [node name="SpaceShip" type="RigidBody2D"]
 collision_layer = 11
@@ -30,15 +27,6 @@ texture = ExtResource("1_tpn0k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_optev")
-
-[node name="Label" type="Label" parent="."]
-offset_left = -546.0
-offset_top = -555.0
-offset_right = 705.0
-offset_bottom = -263.0
-scale = Vector2(0.981866, 1)
-text = "Health: %d/%d"
-label_settings = SubResource("LabelSettings_tnc3t")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_r6p7b")

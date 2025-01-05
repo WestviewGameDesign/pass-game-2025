@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://caphj8g03kr83"]
+[gd_scene load_steps=24 format=3 uid="uid://caphj8g03kr83"]
 
 [ext_resource type="Texture2D" uid="uid://dr5e52wptk4hr" path="res://Assets/Background/space3_4-frames.png" id="1_e1pg1"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_horug"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://crxkcmeecdahs" path="res://space_ship.tscn" id="5_xejvh"]
 [ext_resource type="Script" path="res://Scenes/difficulty_curve.gd" id="6_42034"]
 [ext_resource type="AudioStream" uid="uid://btgkswhnb18f5" path="res://sounds/explosionCrunch_000.ogg" id="7_7et5j"]
+[ext_resource type="PackedScene" uid="uid://dctiprxpqrqfj" path="res://Scenes/HUD.tscn" id="8_2bh8e"]
+[ext_resource type="FontFile" uid="uid://bmelqiqunw0vg" path="res://Assets/SpaceMono-Bold.ttf" id="9_gf25o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s1i1x"]
 atlas = ExtResource("1_e1pg1")
@@ -50,17 +52,45 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ua83m"]
-size = Vector2(4826, 574.013)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qtv37"]
+normal = Vector2(-2.53495e-06, -1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rel6k"]
-size = Vector2(494, 2804.5)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rnmod"]
+normal = Vector2(1, 0)
+distance = 1.93245
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_43bkl"]
-size = Vector2(4433, 189)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d3ju5"]
+normal = Vector2(-1, 0)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_otxjf"]
-size = Vector2(387, 2524.5)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ln555"]
+normal = Vector2(0, 1)
+
+[sub_resource type="Animation" id="Animation_lycgg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/AsteroidSpawner/SpawnTimer:wait_time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path2D/AsteroidSpawner:max_asteroid_impulse")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.366667),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [500.0]
+}
 
 [sub_resource type="Animation" id="Animation_oyhxu"]
 resource_name = "difficulty_curve"
@@ -90,59 +120,51 @@ tracks/1/keys = {
 "values": [500.0, 500.0]
 }
 
-[sub_resource type="Animation" id="Animation_lycgg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Path2D/AsteroidSpawner/SpawnTimer:wait_time")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Path2D/AsteroidSpawner:max_asteroid_impulse")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(-0.366667),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [500.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n3235"]
 _data = {
 "RESET": SubResource("Animation_lycgg"),
 "difficulty_curve": SubResource("Animation_oyhxu")
 }
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_ki0nq"]
+font_size = 36
+
+[node name="Game" type="Node"]
+
+[node name="2DWorld" type="Node2D" parent="."]
 script = ExtResource("1_horug")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="2DWorld"]
 texture_filter = 1
-scale = Vector2(40.275, 40.275)
+scale = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_0vgh6")
 autoplay = "default"
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_jii5e")]
-position = Vector2(-542, -521)
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="2DWorld"]
+texture_filter = 1
+position = Vector2(-2560, 0)
+scale = Vector2(40, 40)
+sprite_frames = SubResource("SpriteFrames_0vgh6")
+autoplay = "default"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="2DWorld"]
+texture_filter = 1
+position = Vector2(2560, 0)
+scale = Vector2(40, 40)
+sprite_frames = SubResource("SpriteFrames_0vgh6")
+autoplay = "default"
+
+[node name="CharacterBody2D" parent="2DWorld" instance=ExtResource("1_jii5e")]
+position = Vector2(-1196, 19)
+
+[node name="Camera2D" type="Camera2D" parent="2DWorld"]
 scale = Vector2(1.29195, 1.85173)
 zoom = Vector2(0.285, 0.285)
 
-[node name="Path2D" type="Path2D" parent="."]
+[node name="Path2D" type="Path2D" parent="2DWorld"]
 curve = SubResource("Curve2D_iig77")
 
-[node name="AsteroidSpawner" type="PathFollow2D" parent="Path2D" node_paths=PackedStringArray("game", "asteroid_target")]
+[node name="AsteroidSpawner" type="PathFollow2D" parent="2DWorld/Path2D" node_paths=PackedStringArray("game", "asteroid_target")]
 position = Vector2(-2033, -1164)
 rotation = -0.00149291
 script = ExtResource("4_7tls4")
@@ -154,41 +176,89 @@ min_asteroid_torque = -7.0
 max_asteroid_torque = 7.0
 asteroid_offset_range = 12.0
 
-[node name="SpawnTimer" type="Timer" parent="Path2D/AsteroidSpawner"]
+[node name="SpawnTimer" type="Timer" parent="2DWorld/Path2D/AsteroidSpawner"]
 wait_time = 2.0
 autostart = true
 
-[node name="SpaceShip" parent="." instance=ExtResource("5_xejvh")]
+[node name="SpaceShip" parent="2DWorld" instance=ExtResource("5_xejvh")]
+position = Vector2(-2, -2)
 
-[node name="WorldBounds" type="StaticBody2D" parent="."]
+[node name="WorldBounds" type="StaticBody2D" parent="2DWorld"]
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds"]
-position = Vector2(-113.001, -1425)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2DWorld/WorldBounds"]
+position = Vector2(-1, -1137)
 rotation = -3.14159
-shape = SubResource("RectangleShape2D_ua83m")
+shape = SubResource("WorldBoundaryShape2D_qtv37")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldBounds"]
-position = Vector2(2277, -132)
-shape = SubResource("RectangleShape2D_rel6k")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="2DWorld/WorldBounds"]
+position = Vector2(2021, 0)
+rotation = -3.14159
+shape = SubResource("WorldBoundaryShape2D_rnmod")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldBounds"]
-position = Vector2(-18, 1254)
-shape = SubResource("RectangleShape2D_43bkl")
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="2DWorld/WorldBounds"]
+position = Vector2(-2021, 0)
+rotation = -3.14159
+shape = SubResource("WorldBoundaryShape2D_d3ju5")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldBounds"]
-position = Vector2(-2245, -67)
-shape = SubResource("RectangleShape2D_otxjf")
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="2DWorld/WorldBounds"]
+position = Vector2(0, 1137)
+rotation = -3.14159
+shape = SubResource("WorldBoundaryShape2D_ln555")
 
-[node name="DifficultyCurve" type="AnimationPlayer" parent="."]
+[node name="DifficultyCurve" type="AnimationPlayer" parent="2DWorld"]
 libraries = {
 "": SubResource("AnimationLibrary_n3235")
 }
 script = ExtResource("6_42034")
 
-[node name="AsteroidSounds" type="AudioStreamPlayer" parent="."]
+[node name="AsteroidSounds" type="AudioStreamPlayer" parent="2DWorld"]
 stream = ExtResource("7_7et5j")
-volume_db = -8.432
+volume_db = -12.0
 max_polyphony = 32
 
-[connection signal="timeout" from="Path2D/AsteroidSpawner/SpawnTimer" to="Path2D/AsteroidSpawner" method="_on_spawn_timer_timeout"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Container" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HUD" parent="CanvasLayer/Container" instance=ExtResource("8_2bh8e")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 416.0
+offset_bottom = 122.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Timer" type="Label" parent="CanvasLayer/Container"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("9_gf25o")
+text = "TIME: 0:00"
+label_settings = SubResource("LabelSettings_ki0nq")
+horizontal_alignment = 2
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="2DWorld/Path2D/AsteroidSpawner/SpawnTimer" to="2DWorld/Path2D/AsteroidSpawner" method="_on_spawn_timer_timeout"]

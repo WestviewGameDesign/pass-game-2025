@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://dctiprxpqrqfj"]
+
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_fwsn2"]
+[ext_resource type="Texture2D" uid="uid://d1lvgkre7pk3y" path="res://Assets/resize_progress_bar_back.png" id="1_uuid1"]
+[ext_resource type="Texture2D" uid="uid://boc57cpdnm7d1" path="res://Assets/resize_progress_bar_green.png" id="2_3d551"]
+[ext_resource type="Texture2D" uid="uid://c8ap74qunk83i" path="res://Assets/resize_progress_bar_red.png" id="2_qt35o"]
+[ext_resource type="Texture2D" uid="uid://c1ow37frshspp" path="res://Assets/resize_progress_bar_yellow.png" id="3_2xrgx"]
+[ext_resource type="FontFile" uid="uid://bmelqiqunw0vg" path="res://Assets/SpaceMono-Bold.ttf" id="5_4oujj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lwrjr"]
+font_size = 36
+
+[node name="VBoxContainer" type="VBoxContainer"]
+z_index = 10
+z_as_relative = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -665.0
+offset_right = 160.0
+offset_bottom = -542.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+script = ExtResource("1_fwsn2")
+texture_hp_low = ExtResource("2_qt35o")
+texture_hp_med = ExtResource("3_2xrgx")
+texture_hp_high = ExtResource("2_3d551")
+
+[node name="HPLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_4oujj")
+text = "%d"
+label_settings = SubResource("LabelSettings_lwrjr")
+
+[node name="HPBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+clip_contents = true
+custom_minimum_size = Vector2(320, 48)
+layout_mode = 2
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 8
+stretch_margin_top = 8
+stretch_margin_right = 8
+stretch_margin_bottom = 16
+texture_under = ExtResource("1_uuid1")
+texture_progress = ExtResource("2_3d551")

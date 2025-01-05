@@ -15,6 +15,14 @@ run/main_scene="res://Scenes/game.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameBus="*res://Scripts/game_bus.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+
 [input]
 
 up={
