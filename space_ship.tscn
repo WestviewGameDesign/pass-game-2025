@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://crxkcmeecdahs"]
+[gd_scene load_steps=8 format=3 uid="uid://crxkcmeecdahs"]
 
 [ext_resource type="Script" path="res://space_ship.gd" id="1_cx7ff"]
-[ext_resource type="Texture2D" uid="uid://cal2px2fg8mj" path="res://pixel_art_is_hard.png" id="1_tpn0k"]
+[ext_resource type="Texture2D" uid="uid://c1mh1hroubtdw" path="res://Assets/shield.png" id="2_la13i"]
+[ext_resource type="Texture2D" uid="uid://bcd1yli1ngwc8" path="res://Assets/ban_cart.png" id="2_x4gf6"]
+[ext_resource type="Script" path="res://Scripts/shake.gd" id="3_je120"]
 [ext_resource type="AudioStream" uid="uid://b628fhfmjyj7g" path="res://sounds/impactMetal_000.ogg" id="3_r6p7b"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kq1sh"]
@@ -19,11 +21,19 @@ contact_monitor = true
 max_contacts_reported = 48
 script = ExtResource("1_cx7ff")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BanCart" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-5.68434e-14, -5.96046e-08)
+scale = Vector2(11, 11)
+texture = ExtResource("2_x4gf6")
+script = ExtResource("3_je120")
+radius = 1.0
+
+[node name="Shield" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(9.53674e-07, -1)
 scale = Vector2(10.75, 11)
-texture = ExtResource("1_tpn0k")
+texture = ExtResource("2_la13i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_optev")
